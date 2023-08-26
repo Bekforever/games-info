@@ -1,0 +1,17 @@
+.layout {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 30px;
+
+	input {
+		width: 100%;
+	}
+
+	button {
+		background-color: transparent;
+		border: none;
+		outline: none;
+	}
+}

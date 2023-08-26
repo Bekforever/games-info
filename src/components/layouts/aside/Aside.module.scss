@@ -1,0 +1,25 @@
+.aside {
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+	padding: 20px;
+
+	.genre {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		padding: 10px 0;
+		gap: 10px;
+
+		img {
+			width: 32px;
+			height: 32px;
+			border-radius: 8px;
+		}
+
+		span:hover {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+	}
+}
