@@ -53,7 +53,7 @@ const Game: React.FC = () => {
 			</div>
 			<div className={styles.right}>
 				{movies && movies.count > 0 && (
-					<video src={movies?.results[0].data[480]} controls />
+					<video src={movies.results[0].data[480]} controls />
 				)}
 				<div className={styles.screenshots}>
 					{screenshots?.results?.map(item => {

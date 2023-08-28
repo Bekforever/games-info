@@ -11,12 +11,13 @@ import {
 export const gamesApi = api.injectEndpoints({
 	endpoints: builder => ({
 		getAllGames: builder.query<IGameDataResult, TSortGames>({
-			query: ({ platforms, genres, ordering }) => ({
+			query: ({ platforms, genres, ordering, search }) => ({
 				url: `/games?${key}&pageParam=1`,
 				params: {
 					platforms: platforms,
 					genres: genres,
 					ordering: ordering,
+					search: search,
 				},
 			}),
 		}),

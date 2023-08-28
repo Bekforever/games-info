@@ -1,12 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
-import { ISharedType } from './shared.types'
+import { TSharedInitialState } from './shared.types'
 
 const mode = localStorage.getItem('mode')
 
-const initialState: ISharedType = {
+const initialState: TSharedInitialState = {
 	mode: mode === 'dark' ? 'dark' : 'light',
-	platforms: null,
 }
 
 const sharedSlice = createSlice({

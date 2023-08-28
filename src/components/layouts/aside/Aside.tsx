@@ -7,10 +7,6 @@ const Aside: React.FC = () => {
 	const { pathname } = useLocation()
 	const { setGenre } = useActions()
 
-	const handleClickGenre = (id: number) => {
-		setGenre(id)
-	}
-
 	return (
 		<div className={pathname.includes('/game/') ? styles.hide : styles.aside}>
 			<h2>Genres</h2>
@@ -18,7 +14,7 @@ const Aside: React.FC = () => {
 				{genres?.results.map(item => {
 					return (
 						<div
-							onClick={() => handleClickGenre(item.id)}
+							onClick={() => setGenre(item.id)}
 							className={styles.genre}
 							key={item.image_background}
 						>

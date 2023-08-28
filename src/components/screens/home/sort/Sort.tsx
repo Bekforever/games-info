@@ -1,6 +1,6 @@
 import { UiSelect } from 'src/components/ui/select/UiSelect'
-import { useState } from 'react'
 import { useActions } from 'src/hooks/useActions'
+import { useSelectors } from 'src/hooks/useSelectors'
 
 type TSortOptions = {
 	value: string
@@ -9,7 +9,8 @@ type TSortOptions = {
 
 const Sort: React.FC = () => {
 	const { setSort } = useActions()
-	const [selectedSort, setSelectedSort] = useState(null)
+	const { ordering } = useSelectors()
+	
 	const options: TSortOptions[] = [
 		{ value: '', label: 'Relevance' },
 		{ value: '-added', label: 'Date added' },
@@ -19,19 +20,13 @@ const Sort: React.FC = () => {
 		{ value: '-rating', label: 'Average rating' },
 	]
 
-	const handleSelect = (e: any) => {
-		setSelectedSort(e)
-		setSort(e)
-	}
-
 	return (
 		<UiSelect
-			value={selectedSort || 'Order by: Relevance'}
-			onChange={handleSelect}
+			value={ordering === 'name' && `Order by: Relevance`}
+			onChange={e => setSort(e)}
 			options={options.map(item => ({
 				...item,
-				label:
-					item.value === selectedSort ? `Order by: ${item.label}` : item.label,
+				label: item.value === ordering ? `Order by: ${item.label}` : item.label,
 			}))}
 		/>
 	)

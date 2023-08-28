@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { UiSelect } from 'src/components/ui/select/UiSelect'
 import { useActions } from 'src/hooks/useActions'
-import { useGetPlatformsQuery } from 'src/redux/index.endpoints'
+import data from './PlatformsList'
 
 export type TOptions = {
 	value: number
@@ -9,7 +9,6 @@ export type TOptions = {
 }
 
 const Platforms: React.FC = () => {
-	const { data } = useGetPlatformsQuery()
 	const { setPlatform } = useActions()
 	const [options, setOptions] = useState<TOptions[]>([])
 

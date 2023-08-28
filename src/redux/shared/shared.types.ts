@@ -24,7 +24,6 @@ export interface IPlatformsDataResult {
 	results: IPlatform[]
 }
 
-export interface ISharedType {
+export type TSharedInitialState = {
 	mode: 'dark' | 'light'
-	platforms: IPlatformsDataResult | null
 }

@@ -2,8 +2,13 @@ import { IGame } from 'src/redux/games/Games.types'
 import styles from './GameCard.module.scss'
 import { GameCardPlatform } from './GameCardPlatform'
 import { useNavigate } from 'react-router-dom'
+import { useInView } from 'react-intersection-observer'
 
 const GameCard: React.FC<IGame> = props => {
+	const { ref, inView } = useInView({
+		threshold: 0.05,
+		triggerOnce: true,
+	})
 	const mode = localStorage.getItem('mode')
 	const {
 		name,
@@ -21,12 +26,13 @@ const GameCard: React.FC<IGame> = props => {
 
 	return (
 		<div
+			ref={ref}
 			onClick={handleClick}
 			className={
 				styles.card + ' ' + (mode === 'dark' ? styles.dark : styles.light)
 			}
 		>
-			<img alt='example' src={background_image} />
+			{inView && <img alt='game image' src={background_image} loading='lazy' />}
 			<div className={styles.text_wrapper}>
 				<div className={styles.wrapper}>
 					<div className={styles.platforms}>

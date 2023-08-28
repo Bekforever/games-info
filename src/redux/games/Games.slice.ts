@@ -4,6 +4,7 @@ const initialState = {
 	ordering: 'name',
 	genre: 4,
 	platform: '4',
+	search: '',
 }
 
 const GameSlice = createSlice({
@@ -18,6 +19,9 @@ const GameSlice = createSlice({
 		},
 		setPlatform(state, { payload }: PayloadAction<string>) {
 			state.platform = payload
+		},
+		setSearch(state, { payload }: PayloadAction<string>) {
+			state.search = payload
 		},
 	},
 })

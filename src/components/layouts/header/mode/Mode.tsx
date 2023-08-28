@@ -9,21 +9,20 @@ import styles from './Mode.module.scss'
 const Mode: React.FC = () => {
 	const { mode } = useSelectors()
 	const { toggleColorMode } = useActions()
+	
 	const onChangeMode = (checked: boolean) => {
 		if (checked) toggleColorMode('dark')
 		else toggleColorMode('light')
 	}
 
 	return (
-		<label>
-			<Switch
-				className={styles.switch + ' ' + (mode === 'light' && styles.light)}
-				checked={mode === 'dark'}
-				onChange={onChangeMode}
-				checkedChildren={<BsMoonStarsFill color='#fff' />}
-				unCheckedChildren={<MdSunny color='yellow' />}
-			/>
-		</label>
+		<Switch
+			className={styles.switch + ' ' + (mode === 'light' && styles.light)}
+			checked={mode === 'dark'}
+			onChange={onChangeMode}
+			checkedChildren={<BsMoonStarsFill color='#fff' />}
+			unCheckedChildren={<MdSunny color='yellow' />}
+		/>
 	)
 }
 

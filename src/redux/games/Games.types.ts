@@ -262,4 +262,5 @@ export type TSortGames = {
 	genres: number
 	platforms: string
 	ordering: string
+	search: string
 }
