@@ -22,7 +22,7 @@ const Sort: React.FC = () => {
 
 	return (
 		<UiSelect
-			value={ordering === 'name' && `Order by: Relevance`}
+			value={ordering === 'name' ? 'Order by: Name' : ordering || 'Order by: Relevance'}
 			onChange={e => setSort(e)}
 			options={options.map(item => ({
 				...item,
