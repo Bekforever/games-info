@@ -19,6 +19,7 @@ const Search: React.FC = () => {
 			onChange={e => setSearchValue(e.target.value)}
 			placeholder='Search...'
 			prefix={<SearchOutlined />}
+			allowClear
 		/>
 	)
 }
