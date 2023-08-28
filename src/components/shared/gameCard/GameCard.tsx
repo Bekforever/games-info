@@ -5,7 +5,14 @@ import { useNavigate } from 'react-router-dom'
 
 const GameCard: React.FC<IGame> = props => {
 	const mode = localStorage.getItem('mode')
-	const { name, ratings, background_image, parent_platforms, metacritic, slug } = props
+	const {
+		name,
+		ratings,
+		background_image,
+		parent_platforms,
+		metacritic,
+		slug,
+	} = props
 	const navigate = useNavigate()
 
 	const handleClick = () => {

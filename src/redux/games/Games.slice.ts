@@ -1,9 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-	sort: 'name',
+	ordering: 'name',
 	genre: 4,
-	platform: 4,
+	platform: '4',
 }
 
 const GameSlice = createSlice({
@@ -11,12 +11,12 @@ const GameSlice = createSlice({
 	initialState,
 	reducers: {
 		setSort(state, { payload }: PayloadAction<string>) {
-			state.sort = payload
+			state.ordering = payload
 		},
 		setGenre(state, { payload }: PayloadAction<number>) {
 			state.genre = payload
 		},
-		setPlatform(state, { payload }: PayloadAction<number>) {
+		setPlatform(state, { payload }: PayloadAction<string>) {
 			state.platform = payload
 		},
 	},

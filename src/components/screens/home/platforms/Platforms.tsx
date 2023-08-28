@@ -24,7 +24,7 @@ const Platforms: React.FC = () => {
 
 	return (
 		<UiSelect
-			onSelect={e => setPlatform(e)}
+			onSelect={e => setPlatform(String(e))}
 			defaultValue='Platforms'
 			options={options}
 		/>

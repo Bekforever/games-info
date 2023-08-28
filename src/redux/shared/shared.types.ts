@@ -1,4 +1,9 @@
-import { TGenresGame } from '../genres/Genres.type'
+type TGame = {
+	id: number
+	name: string
+	added: number
+	slug: string
+}
 
 interface IPlatform {
 	id: number
@@ -9,7 +14,7 @@ interface IPlatform {
 	image: string | null
 	year_start: string | null
 	year_end: string | null
-	games: TGenresGame[]
+	games: TGame[]
 }
 
 export interface IPlatformsDataResult {

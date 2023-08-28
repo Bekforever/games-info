@@ -7,11 +7,11 @@ import { Skeleton } from './skeleton/Skeleton'
 import { useSelectors } from 'src/hooks/useSelectors'
 
 const Home: React.FC = () => {
-	const { genre, platform, sort } = useSelectors()
+	const { genre, platform, ordering } = useSelectors()
 	const { data, isFetching } = useGetAllGamesQuery({
 		genres: genre,
 		platforms: platform,
-		sortOrder: sort,
+		ordering: ordering,
 	})
 
 	return (

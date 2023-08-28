@@ -260,6 +260,6 @@ export interface IGameMoviesDataResult {
 
 export type TSortGames = {
 	genres: number
-	platforms: number
-	sortOrder: string
+	platforms: string
+	ordering: string
 }
