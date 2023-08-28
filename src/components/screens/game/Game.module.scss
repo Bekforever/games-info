@@ -1,0 +1,93 @@
+.root {
+	display: flex;
+	padding: 30px;
+
+	.left {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		row-gap: 50px;
+		.head {
+			display: flex;
+			flex-direction: column;
+			row-gap: 20px;
+		}
+
+		.stats {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			row-gap: 30px;
+
+			.platforms {
+				h3 {
+					color: #6c6c6c;
+				}
+				display: flex;
+				flex-direction: column;
+				row-gap: 5px;
+			}
+			.metacritic {
+				h3 {
+					color: #6c6c6c;
+				}
+				span {
+					padding: 5px;
+					border-radius: 10px;
+					font-weight: 600;
+					width: fit-content;
+					&.dark {
+						background-color: rgb(4, 58, 4);
+						color: rgb(75, 236, 75);
+					}
+					&.light {
+						background-color: rgb(75, 236, 75);
+						color: #000;
+					}
+				}
+				display: flex;
+				flex-direction: column;
+				row-gap: 5px;
+			}
+			.genres {
+				h3 {
+					color: #6c6c6c;
+				}
+				display: flex;
+				flex-direction: column;
+				row-gap: 5px;
+			}
+			.publishers {
+				h3 {
+					color: #6c6c6c;
+				}
+				display: flex;
+				flex-direction: column;
+				row-gap: 5px;
+			}
+		}
+	}
+	.right {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 30px;
+
+		video {
+			width: 90%;
+			border-radius: 20px;
+		}
+
+		.screenshots {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 30px;
+			& > * {
+				border-radius: 10px;
+				width: 320px;
+			}
+		}
+	}
+}

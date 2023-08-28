@@ -4,6 +4,7 @@ import { BsMoonStarsFill } from 'react-icons/bs'
 import { MdSunny } from 'react-icons/md'
 import { useActions } from 'src/hooks/useActions'
 import { useSelectors } from 'src/hooks/useSelectors'
+import styles from './Mode.module.scss'
 
 const Mode: React.FC = () => {
 	const { mode } = useSelectors()
@@ -16,13 +17,12 @@ const Mode: React.FC = () => {
 	return (
 		<label>
 			<Switch
-				style={{ border: '1px solid #000' }}
+				className={styles.switch + ' ' + (mode === 'light' && styles.light)}
 				checked={mode === 'dark'}
 				onChange={onChangeMode}
 				checkedChildren={<BsMoonStarsFill color='#fff' />}
 				unCheckedChildren={<MdSunny color='yellow' />}
 			/>
-			<span>Dark mode</span>
 		</label>
 	)
 }

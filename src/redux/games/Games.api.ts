@@ -1,11 +1,40 @@
+import { key } from 'src/config/url.config'
 import { api } from '../index.api'
-import { IGameDataResult } from './Games.types'
+import {
+	IGameDataResult,
+	IGameInfoDataResult,
+	IGameMoviesDataResult,
+	IGameScreenshotsDataResult,
+	TSortGames,
+} from './Games.types'
 
 export const gamesApi = api.injectEndpoints({
 	endpoints: builder => ({
-		getAllGames: builder.query<IGameDataResult, string>({
-			query: sort => ({
-				url: `/games?key=3e49c7b55bf4452bac85435423b53726&sortOrder=${sort}`,
+		getAllGames: builder.query<IGameDataResult, TSortGames>({
+			query: ({ platforms, genres, sortOrder }) => ({
+				url: `/games?${key}&pageParam=1`,
+				// url: `/games?${key}
+				// ${genres !== '' ? `&genres=${genres}` : ''}&pageParam=1`,
+				params: {
+					platforms: platforms,
+					genres: genres,
+					sortOrder: sortOrder,
+				},
+			}),
+		}),
+		getGameScreenshots: builder.query<IGameScreenshotsDataResult, string>({
+			query: id => ({
+				url: `/games/${id}/screenshots?${key}`,
+			}),
+		}),
+		getGameMovies: builder.query<IGameMoviesDataResult, string>({
+			query: id => ({
+				url: `/games/${id}/movies?${key}`,
+			}),
+		}),
+		getGameInfo: builder.query<IGameInfoDataResult, string>({
+			query: slug => ({
+				url: `/games/${slug}?${key}`,
 			}),
 		}),
 	}),

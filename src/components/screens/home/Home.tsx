@@ -3,11 +3,16 @@ import { Sort } from './sort/Sort'
 import styles from './Home.module.scss'
 import { GameCard } from 'src/components/shared/gameCard/GameCard'
 import { useGetAllGamesQuery } from 'src/redux/index.endpoints'
+import { Skeleton } from './skeleton/Skeleton'
 import { useSelectors } from 'src/hooks/useSelectors'
 
 const Home: React.FC = () => {
-	const { sort } = useSelectors()
-	const { data } = useGetAllGamesQuery(sort)
+	const { genre, platform, sort } = useSelectors()
+	const { data, isFetching } = useGetAllGamesQuery({
+		genres: genre,
+		platforms: platform,
+		sortOrder: sort,
+	})
 
 	return (
 		<div className={styles.home}>
@@ -19,9 +24,13 @@ const Home: React.FC = () => {
 				</div>
 			</div>
 			<div className={styles.results}>
-				{data?.results.map(item => {
-					return <GameCard key={item.background_image} {...item} />
-				})}
+				{isFetching
+					? [...Array(8)].map((_, i) => {
+							return <Skeleton key={i} />
+					  })
+					: data?.results.map(item => {
+							return <GameCard key={item.background_image} {...item} />
+					  })}
 			</div>
 		</div>
 	)
