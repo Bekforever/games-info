@@ -123,11 +123,11 @@ export interface IGame {
 	short_screenshots: ShortScreenshot[]
 }
 
-export interface IGameDataResult {
+export interface IDataResult<T> {
 	count: number
 	next: string
 	previous: null
-	results: IGame[]
+	results: T[]
 }
 
 type Developer = {
@@ -227,7 +227,7 @@ export interface IGameInfoDataResult {
 	youtube_count?: number
 }
 
-type Screenshot = {
+export type TScreenshot = {
 	height: number
 	id: number
 	image: string
@@ -235,14 +235,7 @@ type Screenshot = {
 	width: number
 }
 
-export interface IGameScreenshotsDataResult {
-	count: number
-	next: null | string
-	previous: null | string
-	results: Screenshot[]
-}
-
-type Movie = {
+export type TMovie = {
 	id: number
 	name: string
 	preview: string
@@ -251,16 +244,6 @@ type Movie = {
 	}
 }
 
-export interface IGameMoviesDataResult {
-	count: number
-	next: null | string
-	previous: null | string
-	results: Movie[]
-}
-
 export type TSortGames = {
-	genres: number
-	platforms: string
-	ordering: string
-	search: string
+	[key: string]: number | string
 }

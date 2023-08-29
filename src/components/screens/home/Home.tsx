@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { Platforms } from './platforms/Platforms'
 import { Sort } from './sort/Sort'
 import styles from './Home.module.scss'
@@ -9,16 +9,26 @@ import { useSelectors } from 'src/hooks/useSelectors'
 import genresList from 'src/components/layouts/aside/Genres'
 import PlatformsList from './platforms/PlatformsList'
 
+type TParams = {
+	[key: string]: number | string
+}
+
 const Home: React.FC = () => {
 	const [genresName, setGenresName] = useState('')
 	const [platformName, setPlatformName] = useState('')
 	const { genre, platform, ordering, search } = useSelectors()
-	const { data, isFetching } = useGetAllGamesQuery({
-		genres: genre,
-		platforms: platform,
-		ordering: ordering,
-		search: search,
-	})
+	const [newParams, setNewParams] = useState<TParams>({})
+
+	const params = useMemo<TParams>(() => {
+		return {
+			genres: genre,
+			platforms: platform,
+			ordering: ordering,
+			search: search,
+		}
+	}, [genre, platform, ordering, search])
+
+	const { data, isFetching, isLoading } = useGetAllGamesQuery(newParams)
 
 	useEffect(() => {
 		if (genre) {
@@ -31,7 +41,16 @@ const Home: React.FC = () => {
 				item => item.id === +platform && setPlatformName(item.name)
 			)
 		}
-	}, [genre, platform])
+
+		let keys = Object.keys(params)
+		for (let key of keys) {
+			let value = params[key]
+
+			if (value !== '' && value !== 0) {
+				setNewParams(prev => ({ ...prev, [key]: value }))
+			}
+		}
+	}, [genre, platform, search, ordering])
 
 	return (
 		<div className={styles.home}>
@@ -45,13 +64,11 @@ const Home: React.FC = () => {
 				</div>
 			</div>
 			<div className={styles.results}>
-				{isFetching
-					? [...Array(8)].map((_, i) => {
-						return <Skeleton key={i} />
-					})
-					: data?.results.map(item => {
-						return <GameCard key={item.background_image} {...item} />
-				})}
+				{isLoading || isFetching
+					? [...Array(8)].map((_, i) => <Skeleton key={i} />)
+					: data?.results.map(item => (
+							<GameCard key={item.background_image} {...item} />
+					  ))}
 			</div>
 		</div>
 	)

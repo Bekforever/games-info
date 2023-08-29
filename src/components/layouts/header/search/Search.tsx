@@ -11,7 +11,10 @@ const Search: React.FC = () => {
 
 	useEffect(() => {
 		setSearch(debouncedSearchValue)
-	}, [debouncedSearchValue])
+		if (searchValue === '') {
+			setSearch('')
+		}
+	}, [debouncedSearchValue, searchValue])
 
 	return (
 		<UiInput

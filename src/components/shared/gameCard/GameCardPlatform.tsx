@@ -9,23 +9,24 @@ type TPropsGameCardPlatform = { platforms: ParentPlatform[] }
 const GameCardPlatform: React.FC<TPropsGameCardPlatform> = platforms => {
 	return (
 		<>
-			{platforms?.platforms.map((item, i) => {
-				if (item.platform.slug === 'playstation') {
-					return <BsPlaystation key={i} />
-				} else if (item.platform.slug === 'xbox') {
-					return <BsXbox key={i} />
-				} else if (item.platform.slug === 'pc') {
-					return <HiDesktopComputer key={i} />
-				} else if (item.platform.slug === 'android') {
-					return <AiFillAndroid key={i} />
-				} else if (item.platform.slug === 'nintendo') {
-					return <BsNintendoSwitch key={i} />
-				} else if (item.platform.slug === 'ios') {
-					return <SiIos key={i} />
-				} else if (item.platform.slug === 'macos') {
-					return <SiMacos key={i} />
-				} else if (item.platform.slug === 'linux') {
-					return <SiLinux key={i} />
+			{platforms.platforms.map((item, i) => {
+				switch (item.platform.slug) {
+					case 'playstation':
+						return <BsPlaystation key={i} />
+					case 'xbox':
+						return <BsXbox key={i} />
+					case 'pc':
+						return <HiDesktopComputer key={i} />
+					case 'android':
+						return <AiFillAndroid key={i} />
+					case 'nintendo':
+						return <BsNintendoSwitch key={i} />
+					case 'ios':
+						return <SiIos key={i} />
+					case 'macos':
+						return <SiMacos key={i} />
+					case 'linux':
+						return <SiLinux key={i} />
 				}
 			})}
 		</>

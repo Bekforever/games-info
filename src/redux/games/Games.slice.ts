@@ -1,9 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-	ordering: 'name',
-	genre: 4,
-	platform: '4',
+	ordering: '',
+	genre: 0,
+	platform: '',
 	search: '',
 }
 
